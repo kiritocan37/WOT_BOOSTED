@@ -9,6 +9,9 @@
 <meta property="og:title" content="WOT BOOSTED — Профессиональный буст World of Tanks">
 <meta property="og:description" content="ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
 <link rel="preload" as="image" href="1wot.jpg">
+<link rel="icon" href="logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -101,12 +104,15 @@
     display: flex; align-items: center; gap: 10px;
   }
   .nav-logo span { color: #fff; }
-  .nav-logo-icon {
-    width: 32px; height: 32px;
-    background: var(--gold);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: #000; font-weight: 900;
+  .nav-logo-img {
+    width: 34px; height: 34px;
+    border-radius: 12px;
+    object-fit: contain;
+    background: radial-gradient(120% 120% at 30% 10%, rgba(212,160,23,0.25), rgba(10,11,13,0.85));
+    border: 1px solid rgba(212,160,23,0.25);
+    padding: 4px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+    flex-shrink: 0;
   }
   .nav-right { display: flex; align-items: center; gap: 32px; }
   .lang-switcher { display: flex; gap: 4px; }
@@ -305,13 +311,19 @@
   .service-img-wrap {
     position: relative; width: 100%;
     aspect-ratio: 16 / 10;
-    overflow: hidden; background: var(--dark);
+    overflow: hidden;
+    background:
+      radial-gradient(120% 120% at 25% 15%, rgba(212,160,23,0.10), transparent 55%),
+      radial-gradient(120% 120% at 70% 85%, rgba(255,255,255,0.06), transparent 55%),
+      linear-gradient(180deg, rgba(17,19,24,0.92), rgba(10,11,13,0.92));
+    padding: 10px;
   }
   .service-img {
     width: 100%; height: 100%;
-    object-fit: cover; object-position: center; display: block;
+    object-fit: contain; object-position: center; display: block;
     transition: transform 0.6s ease, filter 0.4s;
     filter: saturate(0.85) brightness(0.85);
+    border-radius: 10px;
   }
   .service-card:hover .service-img,
   .service-card:focus-visible .service-img {
@@ -595,8 +607,18 @@
     font-family: 'Oswald', sans-serif;
     font-size: 18px; font-weight: 700;
     letter-spacing: 3px; color: var(--gold);
+    display: inline-flex; align-items: center; gap: 10px;
   }
   .footer-logo span { color: #fff; }
+  .footer-logo-img {
+    width: 26px; height: 26px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: radial-gradient(120% 120% at 30% 10%, rgba(212,160,23,0.18), rgba(10,11,13,0.85));
+    border: 1px solid rgba(212,160,23,0.20);
+    padding: 3px;
+    flex-shrink: 0;
+  }
   .footer-copy {
     font-size: 12px; color: var(--text-muted); letter-spacing: 1px;
   }
@@ -732,7 +754,16 @@
 
 <nav id="navbar">
   <a href="#home" class="nav-logo" aria-label="Go to home section">
-    <div class="nav-logo-icon">W</div>
+    <img
+      class="nav-logo-img"
+      src="logo.png"
+      alt=""
+      width="34"
+      height="34"
+      loading="eager"
+      decoding="async"
+      onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2234%22%20height%3D%2234%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g%22%20cx%3D%2220%25%22%20cy%3D%2220%25%22%20r%3D%2290%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f0c040%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a07812%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%2252%22%20height%3D%2252%22%20rx%3D%2214%22%20fill%3D%22%230a0b0d%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M19%2021%20l6%2022%20l7-14%20l7%2014%20l6-22%22%20fill%3D%22none%22%20stroke%3D%22%23d4a017%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E';"
+    >
     WOT <span>BOOSTED</span>
   </a>
   <div class="nav-right">
@@ -985,7 +1016,19 @@
 </div>
 
 <footer>
-  <div class="footer-logo">WOT <span>BOOSTED</span></div>
+  <div class="footer-logo">
+    <img
+      class="footer-logo-img"
+      src="logo.png"
+      alt=""
+      width="26"
+      height="26"
+      loading="lazy"
+      decoding="async"
+      onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2226%22%20height%3D%2226%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g%22%20cx%3D%2220%25%22%20cy%3D%2220%25%22%20r%3D%2290%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f0c040%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a07812%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%2252%22%20height%3D%2252%22%20rx%3D%2214%22%20fill%3D%22%230a0b0d%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M19%2021%20l6%2022%20l7-14%20l7%2014%20l6-22%22%20fill%3D%22none%22%20stroke%3D%22%23d4a017%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E';"
+    >
+    WOT <span>BOOSTED</span>
+  </div>
   <div class="footer-copy" data-t="footer_copy">© 2025 WOT BOOSTED. Всі права захищені.</div>
 </footer>
 
