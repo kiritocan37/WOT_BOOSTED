@@ -339,6 +339,12 @@
   .services-grid .service-card:nth-child(3) .service-img {
     object-position: center 18%;
   }
+  /* Per-card focal points (avoid awkward cropping) */
+  .services-grid .service-card:nth-child(1) .service-img { object-position: center 24%; }
+  .services-grid .service-card:nth-child(2) .service-img { object-position: center 26%; }
+  .services-grid .service-card:nth-child(4) .service-img { object-position: 28% 34%; }
+  .services-grid .service-card:nth-child(5) .service-img { object-position: 22% 40%; }
+  .services-grid .service-card:nth-child(6) .service-img { object-position: 68% 38%; }
   .service-card:hover .service-img,
   .service-card:focus-visible .service-img {
     transform: translate3d(var(--par-x), var(--par-y), 0) scale(1.06);
