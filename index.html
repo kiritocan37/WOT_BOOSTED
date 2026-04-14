@@ -8,10 +8,6 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="WOT BOOSTED — Профессиональный буст World of Tanks">
 <meta property="og:description" content="ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
-<link rel="preload" as="image" href="1wot.jpg">
-<link rel="icon" href="logo.png">
-<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
-<link rel="apple-touch-icon" sizes="180x180" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -98,30 +94,18 @@
   }
   .nav-logo {
     font-family: 'Oswald', sans-serif;
-    font-size: 24px; font-weight: 700;
+    font-size: 22px; font-weight: 700;
     letter-spacing: 3px; color: var(--gold);
     text-decoration: none;
     display: flex; align-items: center; gap: 10px;
-    padding: 6px 10px;
-    border-radius: 16px;
-    border: 1px solid rgba(212,160,23,0.18);
-    background:
-      radial-gradient(140% 140% at 20% 10%, rgba(212,160,23,0.12), transparent 55%),
-      linear-gradient(180deg, rgba(17,19,24,0.86), rgba(10,11,13,0.86));
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   }
   .nav-logo span { color: #fff; }
-  .nav-logo-img {
-    width: 42px; height: 42px;
-    border-radius: 999px;
-    object-fit: cover;
-    background: #000;
-    border: 2px solid rgba(212,160,23,0.55);
-    padding: 0;
-    box-shadow:
-      0 10px 22px rgba(0,0,0,0.35),
-      0 0 0 3px rgba(10,11,13,0.65);
-    flex-shrink: 0;
+  .nav-logo-icon {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #000; font-weight: 900;
   }
   .nav-right { display: flex; align-items: center; gap: 32px; }
   .lang-switcher { display: flex; gap: 4px; }
@@ -311,6 +295,7 @@
     will-change: transform;
     --par-x: 0px;
     --par-y: 0px;
+    height: 100%;
   }
   .service-card:hover {
     transform: translateY(-6px);
@@ -319,45 +304,14 @@
   }
   .service-img-wrap {
     position: relative; width: 100%;
-    aspect-ratio: 16 / 11;
-    overflow: hidden;
-    padding: 0;
-    background: linear-gradient(180deg, rgba(17,19,24,0.92), rgba(10,11,13,0.92));
-    --thumb: none;
-  }
-  /* Seamless "full image + no empty sides" */
-  .service-img-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -8%;
-    background-image:
-      radial-gradient(120% 120% at 25% 15%, rgba(212,160,23,0.12), transparent 55%),
-      radial-gradient(120% 120% at 70% 85%, rgba(255,255,255,0.06), transparent 55%),
-      var(--thumb);
-    background-size: cover;
-    background-position: center;
-    filter: blur(22px) saturate(1.05) brightness(0.55);
-    transform: scale(1.06);
-  }
-  .service-img-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,11,13,0.18), rgba(10,11,13,0.74));
-    pointer-events: none;
+    aspect-ratio: 16 / 10;
+    overflow: hidden; background: var(--dark);
   }
   .service-img {
     width: 100%; height: 100%;
-    position: relative;
-    z-index: 1;
-    object-fit: contain;
-    object-position: center;
-    display: block;
+    object-fit: cover; object-position: center; display: block;
     transition: transform 0.6s ease, filter 0.4s;
-    filter: saturate(1.02) brightness(0.98) contrast(1.06);
-    border-radius: 0;
-    background: transparent;
-    transform: scale(1.01);
+    filter: saturate(0.85) brightness(0.85);
   }
   .service-card:hover .service-img,
   .service-card:focus-visible .service-img {
@@ -382,7 +336,6 @@
     padding: 1px;
     background: conic-gradient(from 180deg, rgba(212,160,23,0), rgba(212,160,23,0.65), rgba(212,160,23,0), rgba(255,255,255,0.10), rgba(212,160,23,0));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -415,6 +368,7 @@
     padding: 22px 24px 24px;
     display: flex; flex-direction: column; gap: 8px;
     background: var(--dark2); position: relative;
+    flex: 1;
   }
   .service-info-top {
     display: flex; align-items: center; justify-content: space-between;
@@ -484,6 +438,7 @@
     font-size: 13px; color: var(--text-muted);
     line-height: 1.55; font-weight: 300;
     text-wrap: pretty;
+    margin-top: auto;
   }
   .how {
     background: var(--dark2);
@@ -535,27 +490,18 @@
     display: grid; grid-template-columns: 1.25fr 0.95fr;
     gap: 60px; align-items: center; margin-top: 60px;
   }
-  .why-img-wrap {
-    position: relative;
-    overflow: hidden;
-    background: rgba(0,0,0,0.22);
-    border: 1px solid rgba(212,160,23,0.22);
-  }
+  .why-img-wrap { position: relative; }
   .why-img {
     width: 100%; height: 520px;
-    object-fit: cover;
-    object-position: center;
-    background: rgba(0,0,0,0.22);
-    filter: saturate(0.96) contrast(1.04);
+    object-fit: cover; background: rgba(0,0,0,0.22);
+    filter: saturate(0.92) contrast(1.02);
     display: block;
   }
   .why-img-wrap::before {
     content: ''; position: absolute;
-    inset: 12px;
-    border: 1px solid rgba(212,160,23,0.55);
-    z-index: 1;
-    opacity: 0.85;
-    pointer-events: none;
+    top: -12px; left: -12px; right: 12px; bottom: 12px;
+    border: 2px solid var(--gold);
+    z-index: -1; opacity: 0.4;
   }
   .why-img-wrap::after {
     content: ''; position: absolute; inset: 0;
@@ -651,18 +597,8 @@
     font-family: 'Oswald', sans-serif;
     font-size: 18px; font-weight: 700;
     letter-spacing: 3px; color: var(--gold);
-    display: inline-flex; align-items: center; gap: 10px;
   }
   .footer-logo span { color: #fff; }
-  .footer-logo-img {
-    width: 26px; height: 26px;
-    border-radius: 10px;
-    object-fit: contain;
-    background: radial-gradient(120% 120% at 30% 10%, rgba(212,160,23,0.18), rgba(10,11,13,0.85));
-    border: 1px solid rgba(212,160,23,0.20);
-    padding: 3px;
-    flex-shrink: 0;
-  }
   .footer-copy {
     font-size: 12px; color: var(--text-muted); letter-spacing: 1px;
   }
@@ -798,16 +734,7 @@
 
 <nav id="navbar">
   <a href="#home" class="nav-logo" aria-label="Go to home section">
-    <img
-      class="nav-logo-img"
-      src="logo.png"
-      alt=""
-      width="34"
-      height="34"
-      loading="eager"
-      decoding="async"
-      onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2234%22%20height%3D%2234%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g%22%20cx%3D%2220%25%22%20cy%3D%2220%25%22%20r%3D%2290%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f0c040%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a07812%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%2252%22%20height%3D%2252%22%20rx%3D%2214%22%20fill%3D%22%230a0b0d%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M19%2021%20l6%2022%20l7-14%20l7%2014%20l6-22%22%20fill%3D%22none%22%20stroke%3D%22%23d4a017%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E';"
-    >
+    <div class="nav-logo-icon">W</div>
     WOT <span>BOOSTED</span>
   </a>
   <div class="nav-right">
@@ -838,7 +765,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work11.png" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -854,7 +781,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work22.png" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -870,7 +797,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work33.jpg" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work33.png" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -886,7 +813,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work44.jpg" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
+        <img src="work44.png" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -918,7 +845,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work66.jpg" alt="Майстер" class="service-img" loading="lazy" decoding="async">
+        <img src="work66.png" alt="Майстер" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -1060,19 +987,7 @@
 </div>
 
 <footer>
-  <div class="footer-logo">
-    <img
-      class="footer-logo-img"
-      src="logo.png"
-      alt=""
-      width="26"
-      height="26"
-      loading="lazy"
-      decoding="async"
-      onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2226%22%20height%3D%2226%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g%22%20cx%3D%2220%25%22%20cy%3D%2220%25%22%20r%3D%2290%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f0c040%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a07812%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%2252%22%20height%3D%2252%22%20rx%3D%2214%22%20fill%3D%22%230a0b0d%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M19%2021%20l6%2022%20l7-14%20l7%2014%20l6-22%22%20fill%3D%22none%22%20stroke%3D%22%23d4a017%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E';"
-    >
-    WOT <span>BOOSTED</span>
-  </div>
+  <div class="footer-logo">WOT <span>BOOSTED</span></div>
   <div class="footer-copy" data-t="footer_copy">© 2025 WOT BOOSTED. Всі права захищені.</div>
 </footer>
 
@@ -1182,6 +1097,18 @@ const translations = {
 };
 
 let currentLang = 'uk';
+const fallbackImageSvg = encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>" +
+  "<defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>" +
+  "<stop offset='0%' stop-color='#111318'/>" +
+  "<stop offset='100%' stop-color='#222635'/></linearGradient></defs>" +
+  "<rect width='1200' height='675' fill='url(#g)'/>" +
+  "<rect x='30' y='30' width='1140' height='615' fill='none' stroke='#d4a017' stroke-opacity='0.45' stroke-width='3'/>" +
+  "<text x='50%' y='48%' text-anchor='middle' fill='#d4a017' font-family='Arial, sans-serif' font-size='54' font-weight='700'>WOT BOOSTED</text>" +
+  "<text x='50%' y='58%' text-anchor='middle' fill='#e8e8e8' fill-opacity='0.78' font-family='Arial, sans-serif' font-size='28'>Image Placeholder</text>" +
+  "</svg>"
+);
+const fallbackImageDataUrl = "data:image/svg+xml;charset=UTF-8," + fallbackImageSvg;
 
 function setLang(lang) {
   currentLang = lang;
@@ -1208,20 +1135,55 @@ function setLang(lang) {
   updateModalLang();
 }
 
+function setSafeBackground(selector) {
+  const element = document.querySelector(selector);
+  if (!element) return;
+  const imageUrl = element.style.backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
+  if (!imageUrl || !imageUrl[2]) return;
+
+  const probe = new Image();
+  probe.onload = () => {};
+  probe.onerror = () => {
+    element.style.backgroundImage =
+      "linear-gradient(135deg, rgba(10,11,13,0.92), rgba(25,28,36,0.92)), url('" + fallbackImageDataUrl + "')";
+    element.style.backgroundSize = "cover, cover";
+    element.style.backgroundPosition = "center, center";
+  };
+  probe.src = imageUrl[2];
+}
+
+function applyImageFallbacks() {
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+      if (img.dataset.fallbackApplied === '1') return;
+      img.dataset.fallbackApplied = '1';
+      img.src = fallbackImageDataUrl;
+    }, { once: true });
+
+    if (img.complete && img.naturalWidth === 0) {
+      img.src = fallbackImageDataUrl;
+      img.dataset.fallbackApplied = '1';
+    }
+  });
+
+  setSafeBackground('.hero-bg');
+  setSafeBackground('.contact-banner-bg');
+}
+
 const services = [
-  { img: 'work11.jpg',
+  { img: 'work11.png',
     uk: { name: 'ЛБЗ 1.0', desc: 'Кампанія «Перший сектор» включає 15 оперативних завдань з нагородою у вигляді унікальної техніки та обладнання. Виконаємо всі завдання або вибіркові — на ваш вибір.' },
     ru: { name: 'ЛБЗ 1.0', desc: 'Кампания «Первый сектор» включает 15 оперативных заданий с наградой в виде уникальной техники и оборудования. Выполним все задания или выборочные — на ваш выбор.' },
     en: { name: 'LBZ 1.0', desc: 'Campaign "First Sector" includes 15 combat missions with rewards including unique tanks and equipment. We complete all missions or selective ones — your choice.' } },
-  { img: 'work22.jpg',
+  { img: 'work22.png',
     uk: { name: 'ЛБЗ 2.0', desc: 'Кампанія «Другий фронт» — складніший рівень з нагородою Об\'єкт 279 (р). Вимагає високого рівня гри. Наші бустери мають багатий досвід проходження.' },
     ru: { name: 'ЛБЗ 2.0', desc: 'Кампания «Второй фронт» — более сложный уровень с наградой Объект 279 (р). Требует высокого уровня игры. Наши бустеры имеют большой опыт прохождения.' },
     en: { name: 'LBZ 2.0', desc: 'Campaign "Second Front" — harder level with Object 279(r) as reward. Requires high skill. Our boosters have extensive experience completing it.' } },
-  { img: 'work33.jpg',
+  { img: 'work33.png',
     uk: { name: 'ЛБЗ 3.0', desc: 'Кампанія «Сектор 9» — найскладніша кампанія в World of Tanks з нагородою Black Rock XI рівня. Завдання надзвичайно важкі, але наші фахівці впораються.' },
     ru: { name: 'ЛБЗ 3.0', desc: 'Кампания «Сектор 9» — самая сложная кампания в World of Tanks с наградой Black Rock XI уровня. Задания крайне сложные, но наши специалисты справятся.' },
     en: { name: 'LBZ 3.0', desc: 'Campaign "Sector 9" — the hardest campaign in World of Tanks with Black Rock Tier XI as reward. Missions are extremely difficult, but our specialists will handle it.' } },
-  { img: 'work44.jpg',
+  { img: 'work44.png',
     uk: { name: 'Бої на урон', desc:
       '<strong>Про послугу</strong><br>' +
       'Топовий урон — це найбільш затребуваний показник статистики на даний момент. Тому такі замовлення робляться у взводі, коли взводні ведуть гру на ключовий аккаунт в бою. Головна перевага в тому, що кожен замовник може дивитись за виконанням свого замовлення на YouTube (видно трансляцію тільки замовнику).' +
@@ -1262,7 +1224,7 @@ const services = [
     uk: { name: 'Відмітки', desc: 'Відмітки на стволі — престижний показник майстерності. Вибий 1, 2 або 3 відмітки на будь-якій техніці. Швидко та ефективно.' },
     ru: { name: 'Отметки', desc: 'Отметки на стволе — престижный показатель мастерства. Получи 1, 2 или 3 отметки на любой технике. Быстро и эффективно.' },
     en: { name: 'Marks of Excellence', desc: 'Barrel marks are a prestigious mastery indicator. Get 1, 2 or 3 marks on any tank. Fast and efficient.' } },
-  { img: 'work66.jpg',
+  { img: 'work66.png',
     uk: { name: 'Майстер', desc: 'Знак класності «Майстер» — найвища нагорода за бій. Присуджується гравцям, які набрали найбільше досвіду за бій серед усіх на даній техніці.' },
     ru: { name: 'Мастер', desc: 'Знак классности «Мастер» — высшая награда за бой. Присуждается игрокам, набравшим наибольший опыт за бой среди всех на данной технике.' },
     en: { name: 'Ace Tanker', desc: 'Ace Tanker mastery badge — the highest battle award. Awarded to players who earned the most XP in a battle among all players on that tank.' } }
@@ -1305,18 +1267,6 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// Fill empty sides without cropping: use blurred thumb background
-document.querySelectorAll('.service-img-wrap').forEach(w => {
-  const img = w.querySelector('img');
-  if (!img) return;
-  const setThumb = () => {
-    const src = img.currentSrc || img.src;
-    if (src) w.style.setProperty('--thumb', `url("${src}")`);
-  };
-  if (img.complete) setThumb();
-  else img.addEventListener('load', setThumb, { once: true });
-});
 
 function updateScrollProgress() {
   const h = document.documentElement;
@@ -1381,6 +1331,8 @@ if (!window.matchMedia('(pointer: coarse)').matches && !window.matchMedia('(pref
     });
   });
 }
+
+applyImageFallbacks();
 </script>
 </body>
 </html>
