@@ -8,6 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="WOT BOOSTED — Профессиональный буст World of Tanks">
 <meta property="og:description" content="ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
+<link rel="preload" as="image" href="work1.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -100,12 +101,14 @@
     display: flex; align-items: center; gap: 10px;
   }
   .nav-logo span { color: #fff; }
-  .nav-logo-icon {
-    width: 32px; height: 32px;
-    background: var(--gold);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: #000; font-weight: 900;
+  .nav-logo-img {
+    height: 36px;
+    width: auto;
+    max-width: min(160px, 38vw);
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    flex-shrink: 0;
   }
   .nav-right { display: flex; align-items: center; gap: 32px; }
   .lang-switcher { display: flex; gap: 4px; }
@@ -144,7 +147,7 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: url('1wot.jpg');
+    background-image: url('work1.jpg');
     background-size: cover; background-position: center 30%;
     filter: brightness(0.48) saturate(0.92) contrast(1.02);
     transform: scale(1.05);
@@ -547,7 +550,7 @@
   }
   .contact-banner-bg {
     position: absolute; inset: 0;
-    background-image: url('8wot.jpg');
+    background-image: url('wot8.jpg');
     background-size: cover; background-position: center;
     filter: brightness(0.28) saturate(0.72) contrast(1.02);
   }
@@ -701,6 +704,7 @@
     .hero-stats { position: static; margin-top: 48px; flex-direction: row; }
     .stat { text-align: left; }
     .nav-logo { font-size: 18px; }
+    .nav-logo-img { height: 30px; max-width: 120px; }
     .nav-tg span { display: none; }
     .service-img-wrap { aspect-ratio: 16 / 9; }
   }
@@ -747,7 +751,7 @@
 
 <nav id="navbar">
   <a href="#home" class="nav-logo" aria-label="Go to home section">
-    <div class="nav-logo-icon">W</div>
+    <img src="logo.png" alt="" class="nav-logo-img" width="160" height="36" loading="eager" decoding="async">
     WOT <span>BOOSTED</span>
   </a>
   <div class="nav-right">
@@ -778,7 +782,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work11.png" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -794,7 +798,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work22.png" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -810,7 +814,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work33.png" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work33.jpg" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -826,7 +830,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work44.png" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
+        <img src="work44.jpg" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -858,7 +862,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work66.png" alt="Майстер" class="service-img" loading="lazy" decoding="async">
+        <img src="work66.jpg" alt="Майстер" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -949,7 +953,7 @@
   </div>
   <div class="why-grid">
     <div class="why-img-wrap reveal">
-      <img src="5wot.webp" alt="WoT" class="why-img" loading="lazy" decoding="async">
+      <img src="work5.png" alt="WoT" class="why-img" loading="lazy" decoding="async">
     </div>
     <div class="why-features">
       <div class="feature reveal">
@@ -1168,12 +1172,20 @@ function setSafeBackground(selector) {
 function applyImageFallbacks() {
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', () => {
+      if (img.classList.contains('nav-logo-img')) {
+        img.style.display = 'none';
+        return;
+      }
       if (img.dataset.fallbackApplied === '1') return;
       img.dataset.fallbackApplied = '1';
       img.src = fallbackImageDataUrl;
     }, { once: true });
 
     if (img.complete && img.naturalWidth === 0) {
+      if (img.classList.contains('nav-logo-img')) {
+        img.style.display = 'none';
+        return;
+      }
       img.src = fallbackImageDataUrl;
       img.dataset.fallbackApplied = '1';
     }
@@ -1184,19 +1196,19 @@ function applyImageFallbacks() {
 }
 
 const services = [
-  { img: 'work11.png',
+  { img: 'work11.jpg',
     uk: { name: 'ЛБЗ 1.0', desc: 'Кампанія «Перший сектор» включає 15 оперативних завдань з нагородою у вигляді унікальної техніки та обладнання. Виконаємо всі завдання або вибіркові — на ваш вибір.' },
     ru: { name: 'ЛБЗ 1.0', desc: 'Кампания «Первый сектор» включает 15 оперативных заданий с наградой в виде уникальной техники и оборудования. Выполним все задания или выборочные — на ваш выбор.' },
     en: { name: 'LBZ 1.0', desc: 'Campaign "First Sector" includes 15 combat missions with rewards including unique tanks and equipment. We complete all missions or selective ones — your choice.' } },
-  { img: 'work22.png',
+  { img: 'work22.jpg',
     uk: { name: 'ЛБЗ 2.0', desc: 'Кампанія «Другий фронт» — складніший рівень з нагородою Об\'єкт 279 (р). Вимагає високого рівня гри. Наші бустери мають багатий досвід проходження.' },
     ru: { name: 'ЛБЗ 2.0', desc: 'Кампания «Второй фронт» — более сложный уровень с наградой Объект 279 (р). Требует высокого уровня игры. Наши бустеры имеют большой опыт прохождения.' },
     en: { name: 'LBZ 2.0', desc: 'Campaign "Second Front" — harder level with Object 279(r) as reward. Requires high skill. Our boosters have extensive experience completing it.' } },
-  { img: 'work33.png',
+  { img: 'work33.jpg',
     uk: { name: 'ЛБЗ 3.0', desc: 'Кампанія «Сектор 9» — найскладніша кампанія в World of Tanks з нагородою Black Rock XI рівня. Завдання надзвичайно важкі, але наші фахівці впораються.' },
     ru: { name: 'ЛБЗ 3.0', desc: 'Кампания «Сектор 9» — самая сложная кампания в World of Tanks с наградой Black Rock XI уровня. Задания крайне сложные, но наши специалисты справятся.' },
     en: { name: 'LBZ 3.0', desc: 'Campaign "Sector 9" — the hardest campaign in World of Tanks with Black Rock Tier XI as reward. Missions are extremely difficult, but our specialists will handle it.' } },
-  { img: 'work44.png',
+  { img: 'work44.jpg',
     uk: { name: 'Бої на урон', desc:
       '<strong>Про послугу</strong><br>' +
       'Топовий урон — це найбільш затребуваний показник статистики на даний момент. Тому такі замовлення робляться у взводі, коли взводні ведуть гру на ключовий аккаунт в бою. Головна перевага в тому, що кожен замовник може дивитись за виконанням свого замовлення на YouTube (видно трансляцію тільки замовнику).' +
@@ -1237,7 +1249,7 @@ const services = [
     uk: { name: 'Відмітки', desc: 'Відмітки на стволі — престижний показник майстерності. Вибий 1, 2 або 3 відмітки на будь-якій техніці. Швидко та ефективно.' },
     ru: { name: 'Отметки', desc: 'Отметки на стволе — престижный показатель мастерства. Получи 1, 2 или 3 отметки на любой технике. Быстро и эффективно.' },
     en: { name: 'Marks of Excellence', desc: 'Barrel marks are a prestigious mastery indicator. Get 1, 2 or 3 marks on any tank. Fast and efficient.' } },
-  { img: 'work66.png',
+  { img: 'work66.jpg',
     uk: { name: 'Майстер', desc: 'Знак класності «Майстер» — найвища нагорода за бій. Присуджується гравцям, які набрали найбільше досвіду за бій серед усіх на даній техніці.' },
     ru: { name: 'Мастер', desc: 'Знак классности «Мастер» — высшая награда за бой. Присуждается игрокам, набравшим наибольший опыт за бой среди всех на данной технике.' },
     en: { name: 'Ace Tanker', desc: 'Ace Tanker mastery badge — the highest battle award. Awarded to players who earned the most XP in a battle among all players on that tank.' } }
