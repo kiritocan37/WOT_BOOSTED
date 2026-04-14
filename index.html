@@ -147,7 +147,7 @@
     position: absolute; inset: 0;
     background-image: url('1wot.jpg');
     background-size: cover; background-position: center 30%;
-    filter: brightness(0.3) saturate(0.8);
+    filter: brightness(0.48) saturate(0.92) contrast(1.02);
     transform: scale(1.05);
     animation: heroZoom 20s ease-in-out infinite alternate;
   }
@@ -157,7 +157,7 @@
   }
   .hero-bg::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(10,11,13,0.95) 0%, rgba(10,11,13,0.6) 50%, rgba(10,11,13,0.85) 100%);
+    background: linear-gradient(135deg, rgba(10,11,13,0.86) 0%, rgba(10,11,13,0.48) 52%, rgba(10,11,13,0.75) 100%);
   }
   .hero-scanline {
     position: absolute; top: 0; left: 0; right: 0;
@@ -203,6 +203,7 @@
     margin-bottom: 48px; font-weight: 300;
     opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
   }
+  .hero-sub { color: rgba(232,232,232,0.78); }
   .hero-cta {
     display: flex; gap: 16px; flex-wrap: wrap;
     opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
@@ -275,7 +276,7 @@
   .section-title span { color: var(--gold); }
   .section-desc {
     color: var(--text-muted); font-size: 14px;
-    line-height: 1.7; max-width: 320px; font-weight: 300;
+    line-height: 1.7; max-width: 520px; font-weight: 300;
   }
   .services-grid {
     display: grid;
@@ -289,11 +290,15 @@
     text-decoration: none; color: inherit;
     display: flex; flex-direction: column;
     cursor: pointer;
-    transition: transform 0.35s cubic-bezier(.2,.7,.2,1), border-color 0.3s, box-shadow 0.3s;
+    transition: transform 0.35s cubic-bezier(.2,.7,.2,1), border-color 0.3s, box-shadow 0.3s, filter 0.3s;
     overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    --par-x: 0px;
+    --par-y: 0px;
   }
   .service-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     border-color: var(--border);
     box-shadow: 0 16px 40px rgba(0,0,0,0.45);
   }
@@ -304,22 +309,61 @@
   }
   .service-img {
     width: 100%; height: 100%;
-    object-fit: cover; display: block;
+    object-fit: cover; object-position: center; display: block;
     transition: transform 0.6s ease, filter 0.4s;
     filter: saturate(0.85) brightness(0.85);
   }
-  .service-card:hover .service-img {
-    transform: scale(1.06);
+  .service-card:hover .service-img,
+  .service-card:focus-visible .service-img {
+    transform: translate3d(var(--par-x), var(--par-y), 0) scale(1.06);
     filter: saturate(1) brightness(0.95);
   }
-  .service-img-wrap::after {
-    content: ''; position: absolute;
-    bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s; z-index: 2;
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(600px 200px at 20% 0%, rgba(212,160,23,0.14), transparent 60%);
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+    z-index: 0;
   }
-  .service-card:hover .service-img-wrap::after { transform: scaleX(1); }
+  .service-card:hover::before { opacity: 1; }
+  .service-img-wrap, .service-info { position: relative; z-index: 1; }
+  .service-info { transform: translate3d(calc(var(--par-x) * -0.25), calc(var(--par-y) * -0.25), 0); }
+  .service-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    padding: 1px;
+    background: conic-gradient(from 180deg, rgba(212,160,23,0), rgba(212,160,23,0.65), rgba(212,160,23,0), rgba(255,255,255,0.10), rgba(212,160,23,0));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .service-card:hover::after { opacity: 0.85; }
+  .service-card:focus-visible::after { opacity: 1; }
+
+  .service-floor {
+    position: absolute;
+    left: -20%; right: -20%;
+    bottom: -44px;
+    height: 90px;
+    background: radial-gradient(60% 90% at 50% 30%, rgba(212,160,23,0.22), transparent 70%);
+    filter: blur(10px);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .35s ease, transform .35s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .service-card:hover .service-floor,
+  .service-card:focus-visible .service-floor {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .service-info {
     padding: 22px 24px 24px;
     display: flex; flex-direction: column; gap: 8px;
@@ -344,7 +388,43 @@
   .service-card:hover .service-arrow {
     border-color: var(--gold); color: var(--gold);
     background: rgba(212,160,23,0.08);
-    transform: translateX(3px);
+    transform: translateX(3px) rotate(-6deg);
+  }
+  .service-card:hover .service-num { text-shadow: 0 0 18px rgba(212,160,23,0.25); }
+
+  .scan-sheen {
+    position: absolute;
+    inset: -40% -60%;
+    background: linear-gradient(120deg, transparent 35%, rgba(212,160,23,0.12) 46%, rgba(255,255,255,0.06) 50%, rgba(212,160,23,0.12) 54%, transparent 66%);
+    transform: translateX(-30%) translateY(10%) rotate(8deg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    z-index: 1;
+  }
+  .service-card:hover .scan-sheen { opacity: 1; animation: sheen 1.2s ease-out both; }
+  @keyframes sheen {
+    from { transform: translateX(-35%) translateY(12%) rotate(8deg); }
+    to { transform: translateX(35%) translateY(-10%) rotate(8deg); }
+  }
+
+  @media (pointer: coarse) {
+    .service-card { -webkit-tap-highlight-color: transparent; }
+    .service-card::before { opacity: 0.55; }
+    .service-card::after { opacity: 0.35; }
+    .service-floor { opacity: 0.8; transform: translateY(0); }
+    .scan-sheen { display: none; }
+    .service-card:active {
+      transform: translateY(-2px) scale(0.99);
+      border-color: var(--border);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.45);
+    }
+    .service-card:active .service-arrow {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212,160,23,0.1);
+      transform: translateX(2px);
+    }
   }
   .service-name {
     font-family: 'Oswald', sans-serif;
@@ -405,13 +485,14 @@
   }
   .why { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
   .why-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1.25fr 0.95fr;
     gap: 60px; align-items: center; margin-top: 60px;
   }
   .why-img-wrap { position: relative; }
   .why-img {
     width: 100%; height: 520px;
-    object-fit: cover; filter: saturate(0.8);
+    object-fit: contain; background: rgba(0,0,0,0.22);
+    filter: saturate(0.92) contrast(1.02);
     display: block;
   }
   .why-img-wrap::before {
@@ -448,7 +529,7 @@
     margin-bottom: 6px; color: var(--gold);
   }
   .feature-text {
-    font-size: 13px; color: var(--text-muted);
+    font-size: 13px; color: rgba(232,232,232,0.72);
     line-height: 1.6; font-weight: 300;
   }
   .contact-banner {
@@ -461,8 +542,15 @@
     position: absolute; inset: 0;
     background-image: url('8wot.jpg');
     background-size: cover; background-position: center;
-    filter: brightness(0.15) saturate(0.5);
+    filter: brightness(0.28) saturate(0.72) contrast(1.02);
   }
+  .contact-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(10,11,13,0.62) 0%, rgba(10,11,13,0.38) 55%, rgba(10,11,13,0.62) 100%);
+    pointer-events: none;
+  }
+  .contact-banner-content { position: relative; z-index: 1; }
   .contact-banner-content {
     position: relative; z-index: 1;
     padding: 100px 60px;
@@ -536,8 +624,9 @@
   .modal-overlay.open .modal { transform: translateY(0); }
   .modal-img {
     width: 100%; height: 220px;
-    object-fit: cover;
-    filter: saturate(0.8) brightness(0.7);
+    object-fit: contain;
+    background: rgba(0,0,0,0.28);
+    filter: saturate(0.92) brightness(0.92);
     display: block;
   }
   .modal-body { padding: 36px; }
@@ -671,6 +760,8 @@
 
   <div class="services-grid">
     <a href="#" class="service-card reveal" onclick="openModal(0); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
         <img src="work11.png" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
       </div>
@@ -685,6 +776,8 @@
     </a>
 
     <a href="#" class="service-card reveal" onclick="openModal(1); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
         <img src="work22.png" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
       </div>
@@ -699,6 +792,8 @@
     </a>
 
     <a href="#" class="service-card reveal" onclick="openModal(2); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
         <img src="work33.png" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
       </div>
@@ -713,6 +808,8 @@
     </a>
 
     <a href="#" class="service-card reveal" onclick="openModal(3); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
         <img src="work44.png" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
       </div>
@@ -727,6 +824,8 @@
     </a>
 
     <a href="#" class="service-card reveal" onclick="openModal(4); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
         <img src="work55.png" alt="Відмітки" class="service-img" loading="lazy" decoding="async">
       </div>
@@ -741,6 +840,8 @@
     </a>
 
     <a href="#" class="service-card reveal" onclick="openModal(5); return false;">
+      <div class="scan-sheen" aria-hidden="true"></div>
+      <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
         <img src="work66.png" alt="Майстер" class="service-img" loading="lazy" decoding="async">
       </div>
@@ -1034,9 +1135,42 @@ const services = [
     ru: { name: 'ЛБЗ 3.0', desc: 'Кампания «Сектор 9» — самая сложная кампания в World of Tanks с наградой Black Rock XI уровня. Задания крайне сложные, но наши специалисты справятся.' },
     en: { name: 'LBZ 3.0', desc: 'Campaign "Sector 9" — the hardest campaign in World of Tanks with Black Rock Tier XI as reward. Missions are extremely difficult, but our specialists will handle it.' } },
   { img: 'work44.png',
-    uk: { name: 'Бої на урон', desc: 'Середній урон — ключовий показник ефективності гравця. Допоможемо підвищити статистику урону на потрібній техніці до бажаного рівня.' },
-    ru: { name: 'Бои на урон', desc: 'Средний урон — ключевой показатель эффективности игрока. Поможем повысить статистику урона на нужной технике до желаемого уровня.' },
-    en: { name: 'Damage Battles', desc: 'Average damage is a key player performance metric. We help boost your damage stats on any tank to the desired level.' } },
+    uk: { name: 'Бої на урон', desc:
+      '<strong>Про послугу</strong><br>' +
+      'Топовий урон — це найбільш затребуваний показник статистики на даний момент. Тому такі замовлення робляться у взводі, коли взводні ведуть гру на ключовий аккаунт в бою. Головна перевага в тому, що кожен замовник може дивитись за виконанням свого замовлення на YouTube (видно трансляцію тільки замовнику).' +
+      '<br><br><strong>Умови для виконання</strong>' +
+      '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
+      '<li>Наявність срібла (50 боїв — від 1 млн срібла).</li>' +
+      '<li>Наявність 100 золота для зміни обладнання.</li>' +
+      '<li>У вас повинен бути активний преміум акаунт.</li>' +
+      '<li>Можливість перенавчити екіпаж.</li>' +
+      '<li>Танк повинен бути в повній комплектації.</li>' +
+      '<li>Під час виконання послуги ви не граєте на замовленій техніці.</li>' +
+      '</ul>' },
+    ru: { name: 'Бои на урон', desc:
+      '<strong>Про услугу</strong><br>' +
+      'Топовый урон — один из самых востребованных показателей статистики. Поэтому такие заказы выполняются во взводе: взводные ведут игру на ключевой аккаунт. Главное преимущество — заказчик может наблюдать за выполнением на YouTube (трансляция видна только заказчику).' +
+      '<br><br><strong>Условия выполнения</strong>' +
+      '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
+      '<li>Наличие серебра (50 боёв — от 1 млн серебра).</li>' +
+      '<li>Наличие 100 золота для смены оборудования.</li>' +
+      '<li>Активный премиум-аккаунт.</li>' +
+      '<li>Возможность переобучить экипаж.</li>' +
+      '<li>Танк должен быть в полной комплектации.</li>' +
+      '<li>Во время выполнения услуги вы не играете на заказанной технике.</li>' +
+      '</ul>' },
+    en: { name: 'Damage Battles', desc:
+      '<strong>About the service</strong><br>' +
+      'High damage performance is one of the most requested stats. These orders are completed in a platoon, where teammates support the main account in battle. Key benefit: you can watch progress via a private YouTube stream (visible only to the client).' +
+      '<br><br><strong>Requirements</strong>' +
+      '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
+      '<li>Enough credits (50 battles — from 1M credits).</li>' +
+      '<li>100 gold to change equipment.</li>' +
+      '<li>Active premium account.</li>' +
+      '<li>Ability to retrain the crew.</li>' +
+      '<li>The tank must be fully equipped.</li>' +
+      '<li>You don’t play the ordered vehicle during the service.</li>' +
+      '</ul>' } },
   { img: 'work55.png',
     uk: { name: 'Відмітки', desc: 'Відмітки на стволі — престижний показник майстерності. Вибий 1, 2 або 3 відмітки на будь-якій техніці. Швидко та ефективно.' },
     ru: { name: 'Отметки', desc: 'Отметки на стволе — престижный показатель мастерства. Получи 1, 2 или 3 отметки на любой технике. Быстро и эффективно.' },
@@ -1056,7 +1190,7 @@ function openModal(idx) {
   document.getElementById('modal-img').src = s.img;
   document.getElementById('modal-tag').textContent = '0' + (idx+1) + ' — ' + (lang === 'en' ? 'Service' : lang === 'ru' ? 'Услуга' : 'Послуга');
   document.getElementById('modal-title').textContent = s[lang].name;
-  document.getElementById('modal-desc').textContent = s[lang].desc;
+  document.getElementById('modal-desc').innerHTML = s[lang].desc;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1117,6 +1251,35 @@ if (!window.matchMedia('(pointer: coarse)').matches && !window.matchMedia('(pref
       btn.style.transform = 'translate(' + (x*8).toFixed(2) + 'px, ' + (y*6).toFixed(2) + 'px)';
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+
+  document.querySelectorAll('.service-card').forEach(card => {
+    let raf = 0;
+    card.addEventListener('mousemove', e => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rx = (0.5 - py) * 7.5;
+        const ry = (px - 0.5) * 10.5;
+        card.style.transform = 'translateY(-6px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+        card.style.filter = 'saturate(1.03)';
+        const tx = ((px - 0.5) * 14).toFixed(2) + 'px';
+        const ty = ((py - 0.5) * 10).toFixed(2) + 'px';
+        card.style.setProperty('--par-x', tx);
+        card.style.setProperty('--par-y', ty);
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      card.style.transform = '';
+      card.style.filter = '';
+      card.style.removeProperty('--par-x');
+      card.style.removeProperty('--par-y');
+    });
   });
 }
 </script>
