@@ -522,7 +522,7 @@
   }
   .why-img-wrap::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(225,45,60,0.1) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(225,45,60,0) 0%, transparent 60%);
   }
   .why-features { display: flex; flex-direction: column; gap: 20px; }
   .feature {
@@ -791,7 +791,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work11_light.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -807,7 +807,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
+        <img src="work22_light.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
         <div class="service-info-top">
@@ -937,7 +937,7 @@
       <div class="step reveal">
         <div class="step-num">2</div>
         <div class="step-title" data-t="step2_title">Напиши в Telegram</div>
-        <p class="step-text" data-t="step2_text">Перейди в наш Telegram і опиши що потрібно</p>
+        <p class="step-text" data-t="step2_text">Перейди в наш Telegram і опиши що потрібно</    p>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
@@ -983,7 +983,7 @@
         <div class="feature-icon">✅</div>
         <div>
           <div class="feature-title" data-t="f3_title">Гарантія</div>
-          <p class="feature-text" data-t="f3_text">Беремось тільки за те, що можемо виконати. Якщо щось пішло не так — повернемо кошти.</p>
+          <p class="feature-text" data-t="f3_text">Беремось только за те, що можемо виконати. Якщо щось пішло не так — повернемо кошти.</p>
         </div>
       </div>
       <div class="feature reveal">
@@ -1058,7 +1058,7 @@ const translations = {
     why_label: 'Переваги', why_title: 'ЧОМУ МИ',
     f1_title: 'Швидко', f1_text: 'Виконуємо замовлення в стислі терміни. Без затримок і порожніх обіцянок.',
     f2_title: 'Безпечно', f2_text: 'Працюємо акуратно, мінімальний ризик для акаунту. Досвід 3+ роки.',
-    f3_title: 'Гарантія', f3_text: 'Беремось тільки за те, що можемо виконати. Якщо щось пішло не так — повернемо кошти.',
+    f3_title: 'Гарантія', f3_text: 'Беремось только за те, що можемо виконати. Якщо щось пішло не так — повернемо кошти.',
     f4_title: 'На зв\'язку', f4_text: 'Завжди онлайн у Telegram. Відповідаємо швидко, тримаємо в курсі процесу.',
     cta_title: 'ГОТОВИЙ ЗАМОВИТИ?', cta_sub: 'Напиши нам у Telegram — відповімо швидко',
     footer_copy: '© 2025 WOT BOOSTED. Всі права захищені.',
@@ -1205,11 +1205,13 @@ function applyImageFallbacks() {
 }
 
 const services = [
-  { img: 'work11.jpg',
+  // Обновленный путь к осветленной картинке
+  { img: 'work11_light.jpg',
     uk: { name: 'ЛБЗ 1.0', desc: 'Кампанія «Перший сектор» включає 15 оперативних завдань з нагородою у вигляді унікальної техніки та обладнання. Виконаємо всі завдання або вибіркові — на ваш вибір.' },
     ru: { name: 'ЛБЗ 1.0', desc: 'Кампания «Первый сектор» включает 15 оперативных заданий с наградой в виде уникальной техники и оборудования. Выполним все задания или выборочные — на ваш выбор.' },
     en: { name: 'LBZ 1.0', desc: 'Campaign "First Sector" includes 15 combat missions with rewards including unique tanks and equipment. We complete all missions or selective ones — your choice.' } },
-  { img: 'work22.jpg',
+  // Обновленный путь к осветленной картинке
+  { img: 'work22_light.jpg',
     uk: { name: 'ЛБЗ 2.0', desc: 'Кампанія «Другий фронт» — складніший рівень з нагородою Об\'єкт 279 (р). Вимагає високого рівня гри. Наші бустери мають багатий досвід проходження.' },
     ru: { name: 'ЛБЗ 2.0', desc: 'Кампания «Второй фронт» — более сложный уровень с наградой Объект 279 (р). Требует высокого уровня игры. Наши бустеры имеют большой опыт прохождения.' },
     en: { name: 'LBZ 2.0', desc: 'Campaign "Second Front" — harder level with Object 279(r) as reward. Requires high skill. Our boosters have extensive experience completing it.' } },
@@ -1220,7 +1222,11 @@ const services = [
   { img: 'work44.jpg',
     uk: { name: 'Бої на урон', desc:
       '<strong>Про послугу</strong><br>' +
-      'Топовий урон — це найбільш затребуваний показник статистики на даний момент. Тому такі замовлення робляться у взводі, коли взводні ведуть гру на ключовий аккаунт в бою. Головна перевага в тому, що кожен замовник може дивитись за виконанням свого замовлення на YouTube (видно трансляцію тільки замовнику).' +
+      // Добавлено упоминание WN8 в начало и конец описания
+      'Топовий урон та WN8 — це найбільш затребувані показники статистики на даний момент. ' +
+      'Тому такі замовлення робляться у взводі, коли взводні ведуть гру на ключовый аккаунт в бою. ' +
+      'Головна перевага в тому, що кожен замовник може дивитись за виконанням свого замовлення на YouTube (видно трансляцію тільки замовнику). ' +
+      'Ми гарантуємо топовий WN8 та середній урон.' +
       '<br><br><strong>Умови для виконання</strong>' +
       '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
       '<li>Наявність срібла (50 боїв — від 1 млн срібла).</li>' +
@@ -1232,7 +1238,11 @@ const services = [
       '</ul>' },
     ru: { name: 'Бои на урон', desc:
       '<strong>Про услугу</strong><br>' +
-      'Топовый урон — один из самых востребованных показателей статистики. Поэтому такие заказы выполняются во взводе: взводные ведут игру на ключевой аккаунт. Главное преимущество — заказчик может наблюдать за выполнением на YouTube (трансляция видна только заказчику).' +
+      // Добавлено упоминание WN8 в начало и конец описания
+      'Топовый урон и WN8 — самые востребованные показатели статистики. ' +
+      'Поэтому такие заказы выполняются во взводе: взводные ведут игру на ключевой аккаунт. ' +
+      'Главное преимущество — заказчик может наблюдать за выполнением на YouTube (трансляция видна только заказчику). ' +
+      'Мы гарантируем топовый WN8 и средний урон.' +
       '<br><br><strong>Условия выполнения</strong>' +
       '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
       '<li>Наличие серебра (50 боёв — от 1 млн серебра).</li>' +
@@ -1244,11 +1254,15 @@ const services = [
       '</ul>' },
     en: { name: 'Damage Battles', desc:
       '<strong>About the service</strong><br>' +
-      'High damage performance is one of the most requested stats. These orders are completed in a platoon, where teammates support the main account in battle. Key benefit: you can watch progress via a private YouTube stream (visible only to the client).' +
+      // Добавлено упоминание WN8 в начало и конец описания
+      'High damage and WN8 performance are the most requested stats. ' +
+      'These orders are completed in a platoon, where teammates support the main account in battle. ' +
+      'Key benefit: you can watch progress via a private YouTube stream (visible only to the client). ' +
+      'We guarantee top WN8 and average damage.' +
       '<br><br><strong>Requirements</strong>' +
       '<ul style="margin:12px 0 0 18px; color: rgba(232,232,232,0.74); line-height:1.7;">' +
       '<li>Enough credits (50 battles — from 1M credits).</li>' +
-      '<li>100 gold to change equipment.</li>' +
+      '<li>10 gold to change equipment.</li>' +
       '<li>Active premium account.</li>' +
       '<li>Ability to retrain the crew.</li>' +
       '<li>The tank must be fully equipped.</li>' +
