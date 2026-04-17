@@ -328,37 +328,37 @@
     transition: transform 0.6s ease, filter 0.4s;
     filter: saturate(0.92) brightness(1.05);
   }
-  /* ЛБЗ 1.0 — карта, танк внизу по центру */
+  /* ЛБЗ 1.0 — карта с танком, центрируем */
   .service-card:nth-child(1) .service-img {
-    object-position: center 60%;
+    object-position: center center;
     filter: saturate(1) brightness(1.1);
   }
   /* ЛБЗ 2.0 — танк по центру */
   .service-card:nth-child(2) .service-img {
     object-position: center center;
-    filter: saturate(1) brightness(1.05);
+    filter: saturate(1) brightness(1.08);
   }
-  /* ЛБЗ 3.0 — тёмная, чуть посветлее и зум чтобы танк был виден */
+  /* ЛБЗ 3.0 — Black Rock, сдвигаем ниже чтобы заголовок вверху не обрезался */
   .service-card:nth-child(3) .service-img {
-    --img-zoom: 1.1;
-    object-position: center 40%;
-    filter: saturate(1) brightness(1.15) contrast(1.05);
+    --img-zoom: 1.05;
+    object-position: center 75%;
+    filter: saturate(1) brightness(1.18) contrast(1.05);
   }
-  /* Бои на урон — рейтинг слева, центрируем */
+  /* Бої на урон — рейтинг слева, сдвигаем картинку левее чтобы был виден текст "Особистий рейтинг" */
   .service-card:nth-child(4) .service-img {
-    object-position: center center;
+    object-position: 25% center;
     filter: saturate(1) brightness(1.05);
   }
-  /* Відмітки — танк по центру */
+  /* Відмітки — танк слева, сдвигаем центр чтобы больше его было */
   .service-card:nth-child(5) .service-img {
-    object-position: center center;
+    object-position: 40% center;
     filter: saturate(1) brightness(1.05);
   }
-  /* Майстер — медаль справа, зум чтобы была видна */
+  /* Майстер — медаль справа обрезалась, сдвигаем правее */
   .service-card:nth-child(6) .service-img {
-    --img-zoom: 1.08;
-    object-position: 70% center;
-    filter: saturate(1) brightness(1.05);
+    --img-zoom: 1.05;
+    object-position: 75% center;
+    filter: saturate(1) brightness(1.08);
   }
   .service-card:hover .service-img,
   .service-card:focus-visible .service-img {
@@ -412,33 +412,13 @@
     transform: translateY(0);
   }
   .service-info {
-    padding: 22px 24px 24px;
-    display: flex; flex-direction: column; gap: 8px;
+    padding: 24px 24px 26px;
+    display: flex; flex-direction: column; gap: 10px;
     background: var(--dark2); position: relative;
     flex: 1;
+    justify-content: center;
   }
-  .service-info-top {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px;
-  }
-  .service-num {
-    font-family: 'Oswald', sans-serif;
-    font-size: 11px; color: var(--gold);
-    letter-spacing: 3px; font-weight: 600;
-  }
-  .service-arrow {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(255,255,255,0.12);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; color: var(--text-muted);
-    transition: all 0.3s; flex-shrink: 0;
-  }
-  .service-card:hover .service-arrow {
-    border-color: var(--gold); color: var(--gold);
-    background: rgba(225,45,60,0.08);
-    transform: translateX(3px) rotate(-6deg);
-  }
-  .service-card:hover .service-num { text-shadow: 0 0 18px rgba(225,45,60,0.25); }
+  .service-card:hover .service-name { color: var(--gold); }
 
   .scan-sheen {
     position: absolute;
@@ -467,12 +447,6 @@
       border-color: var(--border);
       box-shadow: 0 12px 26px rgba(0,0,0,0.45);
     }
-    .service-card:active .service-arrow {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(225,45,60,0.1);
-      transform: translateX(2px);
-    }
   }
   .service-name {
     font-family: 'Oswald', sans-serif;
@@ -480,11 +454,13 @@
     letter-spacing: 1px; text-transform: uppercase;
     line-height: 1.15; color: #fff;
     text-wrap: balance;
+    transition: color 0.25s ease;
   }
   .service-desc {
     font-size: 13px; color: var(--text-muted);
     line-height: 1.55; font-weight: 300;
     text-wrap: pretty;
+    margin-top: auto;
   }
   .how {
     background: var(--dark2);
@@ -590,12 +566,12 @@
     position: absolute; inset: 0;
     background-image: url('wot8.jpg');
     background-size: cover; background-position: center;
-    filter: brightness(0.28) saturate(0.72) contrast(1.02);
+    filter: brightness(0.6) saturate(0.85) contrast(1.02);
   }
   .contact-banner::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(10,11,13,0.62) 0%, rgba(10,11,13,0.38) 55%, rgba(10,11,13,0.62) 100%);
+    background: linear-gradient(90deg, rgba(10,11,13,0.45) 0%, rgba(10,11,13,0.2) 55%, rgba(10,11,13,0.45) 100%);
     pointer-events: none;
   }
   .contact-banner-content { position: relative; z-index: 1; }
@@ -872,10 +848,6 @@
         <img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
-        <div class="service-info-top">
-          <div class="service-num">01</div>
-          <div class="service-arrow">→</div>
-        </div>
         <div class="service-name" data-t="s1_name">ЛБЗ 1.0</div>
         <div class="service-desc" data-t="s1_short">Кампанія з топовими нагородами</div>
       </div>
@@ -888,10 +860,6 @@
         <img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
-        <div class="service-info-top">
-          <div class="service-num">02</div>
-          <div class="service-arrow">→</div>
-        </div>
         <div class="service-name" data-t="s2_name">ЛБЗ 2.0</div>
         <div class="service-desc" data-t="s2_short">Другий фронт — Об'єкт 279</div>
       </div>
@@ -904,10 +872,6 @@
         <img src="work33.jpg" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
-        <div class="service-info-top">
-          <div class="service-num">03</div>
-          <div class="service-arrow">→</div>
-        </div>
         <div class="service-name" data-t="s3_name">ЛБЗ 3.0</div>
         <div class="service-desc" data-t="s3_short">Сектор 9 — найскладніша кампанія</div>
       </div>
@@ -920,10 +884,6 @@
         <img src="work44.jpg" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
-        <div class="service-info-top">
-          <div class="service-num">04</div>
-          <div class="service-arrow">→</div>
-        </div>
         <div class="service-name" data-t="s4_name">Бої на урон</div>
         <div class="service-desc" data-t="s4_short">Підвищення середнього урону</div>
       </div>
@@ -936,10 +896,6 @@
         <img src="work55.png" alt="Відмітки" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
-        <div class="service-info-top">
-          <div class="service-num">05</div>
-          <div class="service-arrow">→</div>
-        </div>
         <div class="service-name" data-t="s5_name">Відмітки</div>
         <div class="service-desc" data-t="s5_short">1, 2 та 3 відмітки на будь-яку техніку</div>
       </div>
@@ -952,10 +908,6 @@
         <img src="work66.jpg" alt="Майстер" class="service-img" loading="lazy" decoding="async">
       </div>
       <div class="service-info">
-        <div class="service-info-top">
-          <div class="service-num">06</div>
-          <div class="service-arrow">→</div>
-        </div>
         <div class="service-name" data-t="s6_name">Майстер</div>
         <div class="service-desc" data-t="s6_short">Знак класності «Майстер» на техніку</div>
       </div>
@@ -1353,7 +1305,7 @@ function openModal(idx) {
   const s = services[idx];
   const lang = currentLang;
   document.getElementById('modal-img').src = s.img;
-  document.getElementById('modal-tag').textContent = '0' + (idx+1) + ' — ' + (lang === 'en' ? 'Service' : lang === 'ru' ? 'Услуга' : 'Послуга');
+  document.getElementById('modal-tag').textContent = (lang === 'en' ? 'Service' : lang === 'ru' ? 'Услуга' : 'Послуга');
   document.getElementById('modal-title').textContent = s[lang].name;
   document.getElementById('modal-desc').innerHTML = s[lang].desc;
   document.getElementById('modal').classList.add('open');
