@@ -314,7 +314,7 @@
   }
   .service-img-wrap {
     position: relative; width: 100%;
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 9;
     overflow: hidden; background: var(--dark);
   }
   .service-img {
@@ -328,37 +328,19 @@
     transition: transform 0.6s ease, filter 0.4s;
     filter: saturate(0.92) brightness(1.05);
   }
-  /* ЛБЗ 1.0 — карта с танком, центрируем */
-  .service-card:nth-child(1) .service-img {
-    object-position: center center;
-    filter: saturate(1) brightness(1.1);
-  }
-  /* ЛБЗ 2.0 — танк по центру */
-  .service-card:nth-child(2) .service-img {
-    object-position: center center;
-    filter: saturate(1) brightness(1.08);
-  }
-  /* ЛБЗ 3.0 — Black Rock, сдвигаем ниже чтобы заголовок вверху не обрезался */
-  .service-card:nth-child(3) .service-img {
-    --img-zoom: 1.05;
-    object-position: center 75%;
-    filter: saturate(1) brightness(1.18) contrast(1.05);
-  }
-  /* Бої на урон — рейтинг слева, сдвигаем картинку левее чтобы был виден текст "Особистий рейтинг" */
-  .service-card:nth-child(4) .service-img {
-    object-position: 25% center;
-    filter: saturate(1) brightness(1.05);
-  }
-  /* Відмітки — танк слева, сдвигаем центр чтобы больше его было */
-  .service-card:nth-child(5) .service-img {
-    object-position: 40% center;
-    filter: saturate(1) brightness(1.05);
-  }
-  /* Майстер — медаль справа обрезалась, сдвигаем правее */
+  /* Все карточки — центр, одинаковая яркость */
+  .service-card:nth-child(1) .service-img,
+  .service-card:nth-child(2) .service-img,
+  .service-card:nth-child(3) .service-img,
+  .service-card:nth-child(4) .service-img,
+  .service-card:nth-child(5) .service-img,
   .service-card:nth-child(6) .service-img {
-    --img-zoom: 1.05;
-    object-position: 75% center;
+    object-position: center center;
     filter: saturate(1) brightness(1.08);
+  }
+  /* ЛБЗ 3.0 чуть посветлее — очень тёмная исходно */
+  .service-card:nth-child(3) .service-img {
+    filter: saturate(1) brightness(1.2) contrast(1.05);
   }
   .service-card:hover .service-img,
   .service-card:focus-visible .service-img {
@@ -725,7 +707,7 @@
 
     .services { padding: 72px 14px 48px; }
     .services-grid { grid-template-columns: 1fr; gap: 12px; }
-    .service-img-wrap { aspect-ratio: 16 / 10; }
+    .service-img-wrap { aspect-ratio: 16 / 9; }
     .service-name { font-size: 18px; }
     .service-info { padding: 16px 16px 18px; }
 
