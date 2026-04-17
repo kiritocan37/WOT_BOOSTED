@@ -8,6 +8,13 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="WOT BOOSTED — Профессиональный буст World of Tanks">
 <meta property="og:description" content="ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
+<!-- Фавикон -->
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<!-- SEO -->
+<meta name="keywords" content="буст WoT, ЛБЗ, відмітки, Майстер, World of Tanks boosting, бої на урон, WN8">
+<!-- Canonical — замените на ваш реальный домен -->
+<link rel="canonical" href="https://wotboosted.com/">
 <link rel="preload" as="image" href="work1.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -270,7 +277,7 @@
   .section-label {
     font-family: 'Rajdhani', sans-serif;
     font-size: 11px; letter-spacing: 4px;
-    color: var(--accent-cyan); text-transform: uppercase;
+    color: var(--gold); text-transform: uppercase;
     margin-bottom: 12px;
   }
   .section-title {
@@ -677,6 +684,7 @@
     cursor: pointer; font-size: 16px;
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
+    z-index: 10;
   }
   .modal-close:hover { border-color: var(--gold); color: var(--gold); }
   .reveal {
@@ -719,7 +727,9 @@
     .nav-logo { font-size: 18px; }
     .nav-logo-img { height: 30px; max-width: 120px; }
     .nav-tg span { display: none; }
-    .service-img-wrap { aspect-ratio: 16 / 10; }
+    .service-img-wrap { aspect-ratio: 16 / 9; }
+    .service-card:nth-child(3) .service-img { object-position: center; }
+    .service-card:nth-child(6) .service-img { object-position: center; }
   }
   @media (hover: hover) {
     .service-card:hover { will-change: transform; }
@@ -1023,7 +1033,7 @@
 
 <div class="modal-overlay" id="modal" onclick="closeModal(event)" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
   <div class="modal" role="document">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <button class="modal-close" onclick="closeModalDirect()" aria-label="Close">✕</button>
     <img id="modal-img" src="" alt="" class="modal-img">
     <div class="modal-body">
       <div class="modal-tag" id="modal-tag"></div>
@@ -1283,9 +1293,16 @@ function openModal(idx) {
 }
 
 function closeModal(e) {
-  if (e && e.target !== document.getElementById('modal') && !e.target.classList.contains('modal-close')) return;
+  if (e && e.target !== document.getElementById('modal')) return;
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
+  currentModal = -1;
+}
+
+function closeModalDirect() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModal = -1;
 }
 
 function updateModalLang() {
@@ -1294,7 +1311,7 @@ function updateModalLang() {
   }
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal({ target: document.getElementById('modal') }); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -1385,6 +1402,29 @@ if (enableHeavyEffects) {
 
 updateScrollProgress();
 applyImageFallbacks();
+</script>
+<!-- Schema.org — замените URL на ваш реальный домен -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "WOT BOOSTED",
+  "description": "Профессиональный буст World of Tanks. ЛБЗ, Отметки, Мастер, бои на урон.",
+  "url": "https://wotboosted.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "https://t.me/wot_boosted_news"
+  },
+  "offers": [
+    { "@type": "Offer", "name": "ЛБЗ 1.0" },
+    { "@type": "Offer", "name": "ЛБЗ 2.0" },
+    { "@type": "Offer", "name": "ЛБЗ 3.0" },
+    { "@type": "Offer", "name": "Бої на урон" },
+    { "@type": "Offer", "name": "Відмітки" },
+    { "@type": "Offer", "name": "Майстер" }
+  ]
+}
 </script>
 </body>
 </html>
