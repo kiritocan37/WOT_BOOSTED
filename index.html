@@ -320,27 +320,50 @@
   .service-img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center center;
     --img-zoom: 1;
     transform: scale(var(--img-zoom));
-    transform-origin: center bottom;
+    transform-origin: center center;
     display: block;
     transition: transform 0.6s ease, filter 0.4s;
-    filter: saturate(0.85) brightness(0.85);
+    filter: saturate(0.92) brightness(1.05);
   }
+  /* ЛБЗ 1.0 — карта, танк внизу по центру */
+  .service-card:nth-child(1) .service-img {
+    object-position: center 60%;
+    filter: saturate(1) brightness(1.1);
+  }
+  /* ЛБЗ 2.0 — танк по центру */
+  .service-card:nth-child(2) .service-img {
+    object-position: center center;
+    filter: saturate(1) brightness(1.05);
+  }
+  /* ЛБЗ 3.0 — тёмная, чуть посветлее и зум чтобы танк был виден */
   .service-card:nth-child(3) .service-img {
-    --img-zoom: 1.14;
-    object-position: center 78%;
-    filter: saturate(0.95) brightness(0.93) contrast(1.05);
+    --img-zoom: 1.1;
+    object-position: center 40%;
+    filter: saturate(1) brightness(1.15) contrast(1.05);
   }
+  /* Бои на урон — рейтинг слева, центрируем */
+  .service-card:nth-child(4) .service-img {
+    object-position: center center;
+    filter: saturate(1) brightness(1.05);
+  }
+  /* Відмітки — танк по центру */
+  .service-card:nth-child(5) .service-img {
+    object-position: center center;
+    filter: saturate(1) brightness(1.05);
+  }
+  /* Майстер — медаль справа, зум чтобы была видна */
   .service-card:nth-child(6) .service-img {
-    --img-zoom: 1.12;
-    object-position: center 82%;
+    --img-zoom: 1.08;
+    object-position: 70% center;
+    filter: saturate(1) brightness(1.05);
   }
   .service-card:hover .service-img,
   .service-card:focus-visible .service-img {
     transform: translate3d(var(--par-x, 0px), var(--par-y, 0px), 0) scale(calc(var(--img-zoom, 1) * 1.06));
-    filter: saturate(1) brightness(0.95);
+    filter: saturate(1.05) brightness(1.1);
   }
   .service-card::before {
     content: '';
@@ -703,7 +726,9 @@
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
     .hero-content { padding: 100px 20px 80px; }
-    .hero-stats { right: 20px; gap: 24px; }
+    .hero-stats { right: 20px; gap: 20px; }
+    .stat-num { font-size: 28px; }
+    .stat-label { font-size: 10px; }
     .services { padding: 60px 20px; }
     .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     .how { padding: 60px 20px; }
@@ -718,16 +743,60 @@
     .service-name { font-size: 19px; }
   }
   @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr; }
-    .hero-stats { position: static; margin-top: 48px; flex-direction: row; }
-    .stat { text-align: left; }
-    .nav-logo { font-size: 18px; }
-    .nav-logo-img { height: 30px; max-width: 120px; }
+    nav { padding: 0 14px; height: 56px; }
+    .nav-logo { font-size: 16px; letter-spacing: 2px; }
+    .nav-logo-img { height: 28px; max-width: 110px; }
+    .nav-tg { padding: 7px 14px; font-size: 12px; }
     .nav-tg span { display: none; }
-    .service-img-wrap { aspect-ratio: 16 / 11; }
-    .service-card:nth-child(3) .service-img { object-position: center; }
-    .service-card:nth-child(6) .service-img { object-position: center; }
+    .lang-btn { padding: 3px 8px; font-size: 10px; }
+
+    .services { padding: 72px 14px 48px; }
+    .services-grid { grid-template-columns: 1fr; gap: 12px; }
+    .service-img-wrap { aspect-ratio: 16 / 10; }
+    .service-name { font-size: 18px; }
+    .service-info { padding: 16px 16px 18px; }
+
+    /* На мобиле сбрасываем все кастомные object-position на нейтральные */
+    .service-card:nth-child(1) .service-img { object-position: center center; }
+    .service-card:nth-child(2) .service-img { object-position: center center; }
+    .service-card:nth-child(3) .service-img { object-position: center 35%; }
+    .service-card:nth-child(4) .service-img { object-position: 30% center; }
+    .service-card:nth-child(5) .service-img { object-position: center center; }
+    .service-card:nth-child(6) .service-img { object-position: 60% center; }
+
+    .hero-content { padding: 80px 14px 60px; }
+    .hero-title { font-size: clamp(44px, 14vw, 72px); }
+    .hero-sub { font-size: 14px; margin-bottom: 32px; }
+    .hero-cta { gap: 10px; }
+    .btn-primary, .btn-secondary { padding: 13px 22px; font-size: 13px; }
+
+    .hero-stats {
+      position: static;
+      margin-top: 36px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+    }
+    .stat { text-align: left; }
+    .stat-num { font-size: 26px; }
+    .stat-label { font-size: 9px; }
+
+    .steps { grid-template-columns: 1fr; gap: 32px; }
+    .step { padding: 0 0 0 16px; }
+
+    .why { padding: 48px 14px; }
+    .why-img { height: 240px; }
+    .feature { padding: 16px; gap: 14px; }
+
+    .contact-banner { margin: 0 14px 48px; }
+    .contact-banner-content { padding: 48px 24px; gap: 24px; }
+    .contact-banner h2 { font-size: clamp(22px, 7vw, 32px); }
+
+    footer { padding: 24px 14px; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+    .modal { max-height: 96vh; }
+    .modal-body { padding: 24px; }
+    .modal-title { font-size: 22px; }
   }
   @media (hover: hover) {
     .service-card:hover { will-change: transform; }
