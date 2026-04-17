@@ -41,10 +41,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   section { scroll-margin-top: 84px; }
-  .services, .how, .why, .contact-banner, footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 900px;
-  }
   body {
     background: var(--dark);
     color: var(--text);
@@ -159,8 +155,9 @@
     position: absolute; inset: 0;
     background-image: url('work1.jpg');
     background-size: cover; background-position: center 30%;
-    filter: brightness(0.48) saturate(0.92) contrast(1.02);
+    filter: brightness(0.62) saturate(0.92) contrast(1.02);
     transform: scale(1.05);
+    will-change: transform;
     animation: heroZoom 20s ease-in-out infinite alternate;
   }
   @keyframes heroZoom {
@@ -305,6 +302,7 @@
     transition: transform 0.28s cubic-bezier(.2,.7,.2,1), border-color 0.25s, box-shadow 0.25s, filter 0.25s;
     overflow: hidden;
     transform-style: preserve-3d;
+    transform: translateZ(0);
     --par-x: 0px;
     --par-y: 0px;
     height: 100%;
@@ -727,7 +725,7 @@
     .nav-logo { font-size: 18px; }
     .nav-logo-img { height: 30px; max-width: 120px; }
     .nav-tg span { display: none; }
-    .service-img-wrap { aspect-ratio: 16 / 9; }
+    .service-img-wrap { aspect-ratio: 16 / 11; }
     .service-card:nth-child(3) .service-img { object-position: center; }
     .service-card:nth-child(6) .service-img { object-position: center; }
   }
@@ -932,6 +930,10 @@
         <div class="stat-num">24/7</div>
         <div class="stat-label" data-t="stat3">Підтримка</div>
       </div>
+      <div class="stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-label" data-t="stat4">Років досвіду</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1055,7 +1057,7 @@ const translations = {
     hero_badge: 'Професійний буст WoT',
     hero_sub: 'Професійний бустинг World of Tanks. Відмітки, ЛБЗ, Майстер — виконуємо швидко і чесно.',
     hero_btn1: 'Замовити зараз', hero_btn2: 'Наші послуги',
-    stat1: 'Замовлень', stat2: 'Виконання', stat3: 'Підтримка',
+    stat1: 'Замовлень', stat2: 'Виконання', stat3: 'Підтримка', stat4: 'Років досвіду',
     services_label: 'Послуги', services_title: 'НАШІ ПОСЛУГИ',
     services_desc: 'Натисніть на послугу щоб дізнатись деталі і зв\'язатись з нами',
     s1_name: 'ЛБЗ 1.0', s1_short: 'Кампанія з топовими нагородами',
@@ -1083,7 +1085,7 @@ const translations = {
     hero_badge: 'Профессиональный буст WoT',
     hero_sub: 'Профессиональный бустинг World of Tanks. Отметки, ЛБЗ, Мастер — выполняем быстро и честно.',
     hero_btn1: 'Заказать сейчас', hero_btn2: 'Наши услуги',
-    stat1: 'Заказов', stat2: 'Выполнение', stat3: 'Поддержка',
+    stat1: 'Заказов', stat2: 'Выполнение', stat3: 'Поддержка', stat4: 'Лет опыта',
     services_label: 'Услуги', services_title: 'НАШИ УСЛУГИ',
     services_desc: 'Нажмите на услугу, чтобы узнать детали и связаться с нами',
     s1_name: 'ЛБЗ 1.0', s1_short: 'Кампания с топовыми наградами',
@@ -1111,7 +1113,7 @@ const translations = {
     hero_badge: 'Professional WoT Boosting',
     hero_sub: 'Professional World of Tanks boosting. Marks, LBZ, Master — fast and reliable.',
     hero_btn1: 'Order Now', hero_btn2: 'Our Services',
-    stat1: 'Orders', stat2: 'Completion', stat3: 'Support',
+    stat1: 'Orders', stat2: 'Completion', stat3: 'Support', stat4: 'Years Experience',
     services_label: 'Services', services_title: 'OUR SERVICES',
     services_desc: 'Click on a service to learn details and contact us',
     s1_name: 'LBZ 1.0', s1_short: 'Campaign with top rewards',
