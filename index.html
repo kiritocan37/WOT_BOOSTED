@@ -788,16 +788,19 @@
     .lang-btn { padding: 3px 8px; font-size: 10px; }
 
     .services { padding: 72px 14px 48px; }
-    .services-grid { grid-template-columns: 1fr; gap: 12px; }
-    .service-img-wrap { aspect-ratio: 16 / 9; }
-    .service-name { font-size: 18px; }
-    .service-info { padding: 16px 16px 18px; }
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+    /* Более удобная пропорция для мобилы — картинка выше */
+    .service-img-wrap { aspect-ratio: 3 / 2; }
+    .service-name { font-size: 20px; letter-spacing: 0.5px; }
+    .service-desc { font-size: 13px; }
+    .service-info { padding: 18px 18px 22px; gap: 8px; }
 
-    /* Мобильные object-position */
+    /* Мобильные object-position — для каждой карточки отдельно */
     .service-card:nth-child(1) .service-img { object-position: center center; }
     .service-card:nth-child(2) .service-img { object-position: center center; }
     .service-card:nth-child(3) .service-img { object-position: center center; }
-    .service-card:nth-child(4) .service-img { object-position: 12% center; }
+    /* Бої на урон — сдвигаем сильно влево чтобы WN8 точно был виден */
+    .service-card:nth-child(4) .service-img { object-position: 5% center; }
     .service-card:nth-child(5) .service-img { object-position: center center; }
     .service-card:nth-child(6) .service-img { object-position: center center; }
 
