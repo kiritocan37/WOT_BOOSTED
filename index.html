@@ -8,6 +8,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="WOT BOOSTED — Профессиональный буст World of Tanks">
 <meta property="og:description" content="ЛБЗ, Отметки, Мастер, бои на урон. Быстро, безопасно, честно.">
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e12d3c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WOT BOOSTED">
 <!-- Фавикон -->
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
@@ -15,10 +21,11 @@
 <meta name="keywords" content="буст WoT, ЛБЗ, відмітки, Майстер, World of Tanks boosting, бої на урон, WN8">
 <!-- Canonical — замените на ваш реальный домен -->
 <link rel="canonical" href="https://wotboosted.com/">
-<link rel="preload" as="image" href="work1.jpg">
+<!-- Preload hero image -->
+<link rel="preload" as="image" href="work1.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Rajdhani:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     /* Палитра под баннер: глубокий красный + неон пурпур + циан */
@@ -153,7 +160,8 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: url('work1.jpg');
+    background-image: image-set(url('work1.webp') type('image/webp'), url('work1.jpg') type('image/jpeg'));
+    background-image: -webkit-image-set(url('work1.webp') type('image/webp'), url('work1.jpg') type('image/jpeg'));
     background-size: cover; background-position: center 30%;
     filter: brightness(0.62) saturate(0.92) contrast(1.02);
     transform: scale(1.05);
@@ -550,7 +558,8 @@
   }
   .contact-banner-bg {
     position: absolute; inset: 0;
-    background-image: url('wot8.jpg');
+    background-image: image-set(url('wot8.webp') type('image/webp'), url('wot8.jpg') type('image/jpeg'));
+    background-image: -webkit-image-set(url('wot8.webp') type('image/webp'), url('wot8.jpg') type('image/jpeg'));
     background-size: cover; background-position: center;
     filter: brightness(0.6) saturate(0.85) contrast(1.02);
   }
@@ -787,22 +796,27 @@
     .nav-tg span { display: none; }
     .lang-btn { padding: 3px 8px; font-size: 10px; }
 
-    .services { padding: 72px 14px 48px; }
-    .services-grid { grid-template-columns: 1fr; gap: 16px; }
-    /* Более удобная пропорция для мобилы — картинка выше */
-    .service-img-wrap { aspect-ratio: 3 / 2; }
-    .service-name { font-size: 20px; letter-spacing: 0.5px; }
-    .service-desc { font-size: 13px; }
-    .service-info { padding: 18px 18px 22px; gap: 8px; }
+    /* Сервисы — одна колонка, карточки на всю ширину экрана */
+    .services { padding: 72px 10px 48px; }
+    .services-grid { grid-template-columns: 1fr; gap: 18px; }
+    /* Широкая картинка 16:9 — всё видно, ничего не съедается */
+    .service-img-wrap { aspect-ratio: 16 / 9; }
+    .service-name { font-size: 22px; letter-spacing: 0.5px; }
+    .service-desc { font-size: 14px; line-height: 1.6; }
+    .service-info { padding: 20px 20px 24px; gap: 10px; }
 
-    /* Мобильные object-position — для каждой карточки отдельно */
-    .service-card:nth-child(1) .service-img { object-position: center center; }
-    .service-card:nth-child(2) .service-img { object-position: center center; }
-    .service-card:nth-child(3) .service-img { object-position: center center; }
+    /* На мобиле все картинки по центру — шире кадр, не режется */
+    .service-card:nth-child(1) .service-img,
+    .service-card:nth-child(2) .service-img,
+    .service-card:nth-child(3) .service-img,
+    .service-card:nth-child(5) .service-img,
+    .service-card:nth-child(6) .service-img {
+      object-position: center center;
+    }
     /* Бої на урон — сдвигаем сильно влево чтобы WN8 точно был виден */
-    .service-card:nth-child(4) .service-img { object-position: 5% center; }
-    .service-card:nth-child(5) .service-img { object-position: center center; }
-    .service-card:nth-child(6) .service-img { object-position: center center; }
+    .service-card:nth-child(4) .service-img {
+      object-position: 5% center;
+    }
 
     .hero-content { padding: 80px 14px 60px; }
     .hero-title { font-size: clamp(44px, 14vw, 72px); }
@@ -925,7 +939,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async">
+        <picture><source srcset="work11.webp" type="image/webp"><img src="work11.jpg" alt="ЛБЗ 1.0" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
       <div class="service-info">
         <div class="service-name" data-t="s1_name">ЛБЗ 1.0</div>
@@ -937,7 +951,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async">
+        <picture><source srcset="work22.webp" type="image/webp"><img src="work22.jpg" alt="ЛБЗ 2.0" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
       <div class="service-info">
         <div class="service-name" data-t="s2_name">ЛБЗ 2.0</div>
@@ -949,7 +963,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work33.jpg" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async">
+        <picture><source srcset="work33.webp" type="image/webp"><img src="work33.jpg" alt="ЛБЗ 3.0" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
       <div class="service-info">
         <div class="service-name" data-t="s3_name">ЛБЗ 3.0</div>
@@ -961,7 +975,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work44.jpg" alt="Бої на урон" class="service-img" loading="lazy" decoding="async">
+        <picture><source srcset="work44.webp" type="image/webp"><img src="work44.jpg" alt="Бої на урон" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
       <div class="service-info">
         <div class="service-name" data-t="s4_name">Бої на урон</div>
@@ -973,7 +987,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work55.png" alt="Відмітки" class="service-img" loading="lazy" decoding="async">
+        <picture><source srcset="work55.webp" type="image/webp"><img src="work55.png" alt="Відмітки" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
       <div class="service-info">
         <div class="service-name" data-t="s5_name">Відмітки</div>
@@ -985,7 +999,7 @@
       <div class="scan-sheen" aria-hidden="true"></div>
       <div class="service-floor" aria-hidden="true"></div>
       <div class="service-img-wrap">
-        <img src="work66.jpg" alt="Майстер" class="service-img" loading="lazy" decoding="async">
+        <picture><source srcset="work66.webp" type="image/webp"><img src="work66.jpg" alt="Майстер" class="service-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
       </div>
       <div class="service-info">
         <div class="service-name" data-t="s6_name">Майстер</div>
@@ -1029,8 +1043,8 @@
         <div class="stat-label" data-t="stat3">Підтримка</div>
       </div>
       <div class="stat">
-        <div class="stat-num">4.9★</div>
-        <div class="stat-label" data-t="stat4">Рейтинг</div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label" data-t="stat4">Років досвіду</div>
       </div>
     </div>
   </div>
@@ -1076,7 +1090,7 @@
   </div>
   <div class="why-grid">
     <div class="why-img-wrap reveal">
-      <img src="work5.png" alt="WoT" class="why-img" loading="lazy" decoding="async">
+      <picture><source srcset="work5.webp" type="image/webp"><img src="work5.png" alt="WoT" class="why-img" loading="lazy" decoding="async" fetchpriority="low"></picture>
     </div>
     <div class="why-features">
       <div class="feature reveal">
@@ -1141,7 +1155,7 @@
         <a href="https://tiktok.com/@wot_boosted" target="_blank" class="footer-social tt" aria-label="TikTok" data-name="TikTok">
           <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
         </a>
-        <a href="https://discord.gg/vy88pVqr" target="_blank" class="footer-social dc" aria-label="Discord" data-name="Discord">
+        <a href="https://discord.gg/cxxyWuGJjq" target="_blank" class="footer-social dc" aria-label="Discord" data-name="Discord">
           <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
         </a>
       </div>
@@ -1176,7 +1190,7 @@ const translations = {
     hero_badge: 'Професійний буст WoT',
     hero_sub: 'Професійний бустинг World of Tanks. Відмітки, ЛБЗ, Майстер — виконуємо швидко і чесно.',
     hero_btn1: 'Замовити зараз', hero_btn2: 'Наші послуги',
-    stat1: 'Замовлень', stat2: 'Виконання', stat3: 'Підтримка', stat4: 'Рейтинг',
+    stat1: 'Замовлень', stat2: 'Виконання', stat3: 'Підтримка', stat4: 'Років досвіду',
     services_label: 'Послуги', services_title: 'НАШІ ПОСЛУГИ',
     services_desc: 'Натисніть на послугу щоб дізнатись деталі і зв\'язатись з нами',
     s1_name: 'ЛБЗ 1.0', s1_short: 'Кампанія з топовими нагородами',
@@ -1206,7 +1220,7 @@ const translations = {
     hero_badge: 'Профессиональный буст WoT',
     hero_sub: 'Профессиональный бустинг World of Tanks. Отметки, ЛБЗ, Мастер — выполняем быстро и честно.',
     hero_btn1: 'Заказать сейчас', hero_btn2: 'Наши услуги',
-    stat1: 'Заказов', stat2: 'Выполнение', stat3: 'Поддержка', stat4: 'Рейтинг',
+    stat1: 'Заказов', stat2: 'Выполнение', stat3: 'Поддержка', stat4: 'Лет опыта',
     services_label: 'Услуги', services_title: 'НАШИ УСЛУГИ',
     services_desc: 'Нажмите на услугу, чтобы узнать детали и связаться с нами',
     s1_name: 'ЛБЗ 1.0', s1_short: 'Кампания с топовыми наградами',
@@ -1236,7 +1250,7 @@ const translations = {
     hero_badge: 'Professional WoT Boosting',
     hero_sub: 'Professional World of Tanks boosting. Marks, LBZ, Master — fast and reliable.',
     hero_btn1: 'Order Now', hero_btn2: 'Our Services',
-    stat1: 'Orders', stat2: 'Completion', stat3: 'Support', stat4: 'Rating',
+    stat1: 'Orders', stat2: 'Completion', stat3: 'Support', stat4: 'Years Experience',
     services_label: 'Services', services_title: 'OUR SERVICES',
     services_desc: 'Click on a service to learn details and contact us',
     s1_name: 'LBZ 1.0', s1_short: 'Campaign with top rewards',
@@ -1529,6 +1543,24 @@ if (enableHeavyEffects) {
 
 updateScrollProgress();
 applyImageFallbacks();
+
+// Пауза heroZoom когда hero не виден — экономия CPU
+const heroBg = document.querySelector('.hero-bg');
+if (heroBg && 'IntersectionObserver' in window) {
+  const heroObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      heroBg.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+    });
+  }, { threshold: 0.01 });
+  heroObs.observe(document.querySelector('.hero'));
+}
+
+// PWA service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 </script>
 <!-- Schema.org — замените URL на ваш реальный домен -->
 <script type="application/ld+json">
