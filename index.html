@@ -12,6 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#e12d3c">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="WOT BOOSTED">
 <!-- Фавикон -->
@@ -160,8 +161,7 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: image-set(url('work1.webp') type('image/webp'), url('work1.jpg') type('image/jpeg'));
-    background-image: -webkit-image-set(url('work1.webp') type('image/webp'), url('work1.jpg') type('image/jpeg'));
+    background-image: url('work1.jpg');
     background-size: cover; background-position: center 30%;
     filter: brightness(0.62) saturate(0.92) contrast(1.02);
     transform: scale(1.05);
@@ -558,8 +558,7 @@
   }
   .contact-banner-bg {
     position: absolute; inset: 0;
-    background-image: image-set(url('wot8.webp') type('image/webp'), url('wot8.jpg') type('image/jpeg'));
-    background-image: -webkit-image-set(url('wot8.webp') type('image/webp'), url('wot8.jpg') type('image/jpeg'));
+    background-image: url('wot8.jpg');
     background-size: cover; background-position: center;
     filter: brightness(0.6) saturate(0.85) contrast(1.02);
   }
