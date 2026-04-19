@@ -1554,12 +1554,7 @@ if (heroBg && 'IntersectionObserver' in window) {
   heroObs.observe(document.querySelector('.hero'));
 }
 
-// PWA service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  });
-}
+// Service Worker отключён для стабильной работы в процессе разработки
 </script>
 <!-- Schema.org — замените URL на ваш реальный домен -->
 <script type="application/ld+json">
