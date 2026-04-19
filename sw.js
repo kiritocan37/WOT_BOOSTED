@@ -1,5 +1,4 @@
-// WOT BOOSTED Service Worker
-const CACHE_VERSION = 'wot-boosted-v1';
+const CACHE_VERSION = 'wot-boosted-v2';
 const STATIC_CACHE = [
   '/',
   '/index.html',
@@ -7,7 +6,6 @@ const STATIC_CACHE = [
   '/manifest.json'
 ];
 
-// Установка — кэшируем базовые файлы
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
@@ -16,7 +14,6 @@ self.addEventListener('install', event => {
   );
 });
 
-// Активация — удаляем старые кэши
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -25,21 +22,15 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Стратегия: Network First для HTML, Cache First для ассетов
 self.addEventListener('fetch', event => {
   const { request } = event;
-
-  // Только GET запросы
   if (request.method !== 'GET') return;
-
-  // Внешние домены (шрифты Google, Telegram etc.) — пропускаем
   if (!request.url.startsWith(self.location.origin)) return;
 
   const url = new URL(request.url);
   const isHTML = request.destination === 'document' || url.pathname.endsWith('.html') || url.pathname === '/';
 
   if (isHTML) {
-    // Network first для HTML — всегда свежий контент
     event.respondWith(
       fetch(request)
         .then(response => {
@@ -50,7 +41,6 @@ self.addEventListener('fetch', event => {
         .catch(() => caches.match(request))
     );
   } else {
-    // Cache first для картинок, шрифтов, js, css
     event.respondWith(
       caches.match(request).then(cached => {
         return cached || fetch(request).then(response => {
