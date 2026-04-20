@@ -52,7 +52,7 @@
     --text-muted: #9390a8;
     --border: rgba(225, 45, 60, 0.28);
     --border-subtle: rgba(255,255,255,0.06);
-    --container: min(1400px, 92vw);
+    --container: 1400px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -879,6 +879,10 @@
 
   /* Большие мониторы — 2К/4К */
   @media (min-width: 1600px) {
+    .services, .why {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
     .hero-title {
       font-size: clamp(80px, 7vw, 120px);
     }
