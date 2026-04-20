@@ -52,7 +52,7 @@
     --text-muted: #9390a8;
     --border: rgba(225, 45, 60, 0.28);
     --border-subtle: rgba(255,255,255,0.06);
-    --container: 1400px;
+    --container: min(1400px, 92vw);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -209,7 +209,7 @@
   .hero-badge::before { content: '▶'; font-size: 8px; }
   .hero-title {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(52px, 8vw, 100px);
+    font-size: clamp(52px, 7vw, 140px);
     font-weight: 700; line-height: 0.9; letter-spacing: -1px;
     text-transform: uppercase; margin-bottom: 24px;
     opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
@@ -217,7 +217,7 @@
   .hero-title .gold { color: var(--gold); }
   .hero-title .outline { -webkit-text-stroke: 2px rgba(255,255,255,0.3); color: transparent; }
   .hero-sub {
-    font-size: 16px; color: var(--text-muted);
+    font-size: clamp(14px, 1.1vw, 20px); color: var(--text-muted);
     max-width: 520px; line-height: 1.7;
     margin-bottom: 48px; font-weight: 300;
     opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
@@ -289,12 +289,12 @@
   }
   .section-title {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(32px, 5vw, 52px);
+    font-size: clamp(28px, 3.5vw, 68px);
     font-weight: 700; text-transform: uppercase; line-height: 1;
   }
   .section-title span { color: var(--gold); }
   .section-desc {
-    color: var(--text-muted); font-size: 14px;
+    color: var(--text-muted); font-size: clamp(13px, 1vw, 18px);
     line-height: 1.7; max-width: 520px; font-weight: 300;
   }
   .services-grid {
@@ -446,14 +446,14 @@
   }
   .service-name {
     font-family: 'Oswald', sans-serif;
-    font-size: 22px; font-weight: 600;
+    font-size: clamp(18px, 1.4vw, 28px); font-weight: 600;
     letter-spacing: 1px; text-transform: uppercase;
     line-height: 1.15; color: #fff;
     text-wrap: balance;
     transition: color 0.25s ease;
   }
   .service-desc {
-    font-size: 13px; color: var(--text-muted);
+    font-size: clamp(12px, 0.9vw, 16px); color: var(--text-muted);
     line-height: 1.55; font-weight: 300;
     text-wrap: pretty;
     margin-top: auto;
@@ -495,12 +495,12 @@
   }
   .step-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 16px; font-weight: 600;
+    font-size: clamp(14px, 1.1vw, 20px); font-weight: 600;
     text-transform: uppercase; letter-spacing: 1px;
     margin-bottom: 10px;
   }
   .step-text {
-    font-size: 13px; color: var(--text-muted);
+    font-size: clamp(12px, 0.85vw, 16px); color: var(--text-muted);
     line-height: 1.6; font-weight: 300;
   }
   .why { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
@@ -544,12 +544,12 @@
   }
   .feature-title {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 16px; font-weight: 600;
+    font-size: clamp(14px, 1.1vw, 20px); font-weight: 600;
     letter-spacing: 1px; text-transform: uppercase;
     margin-bottom: 6px; color: var(--gold);
   }
   .feature-text {
-    font-size: 13px; color: rgba(232,232,232,0.72);
+    font-size: clamp(12px, 0.9vw, 16px); color: rgba(232,232,232,0.72);
     line-height: 1.6; font-weight: 300;
   }
   .contact-banner {
