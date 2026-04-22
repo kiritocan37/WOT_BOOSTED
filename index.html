@@ -1020,34 +1020,43 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // 1. Все кнопки и ссылки на Telegram
-  document.querySelectorAll('a[href*="t.me"]').forEach(function(el) {
-    el.addEventListener('click', function() {
-      gtag('event', 'telegram_click', {
-        'event_category': 'conversion',
-        'event_label': el.closest('section') ? el.closest('section').id : el.className
-      });
+  // 1. Navbar Telegram button
+  var navTg = document.querySelector('.nav-tg');
+  if (navTg) {
+    navTg.addEventListener('click', function() {
+      gtag('event', 'telegram_click', { event_category: 'conversion', event_label: 'navbar' });
     });
-  });
+  }
 
-  // 2. Клик на карточку услуги
+  // 2. Hero "Замовити зараз" button
+  var heroCta = document.querySelector('.hero-cta a.btn-primary');
+  if (heroCta) {
+    heroCta.addEventListener('click', function() {
+      gtag('event', 'telegram_click', { event_category: 'conversion', event_label: 'hero_zamovity' });
+    });
+  }
+
+  // 3. CTA banner Telegram button (Готовий замовити?)
+  var ctaTg = document.querySelector('.contact-link.tg');
+  if (ctaTg) {
+    ctaTg.addEventListener('click', function() {
+      gtag('event', 'telegram_click', { event_category: 'conversion', event_label: 'cta_banner' });
+    });
+  }
+
+  // 4. Footer Telegram icon
+  var footerTg = document.querySelector('.footer-social.tg');
+  if (footerTg) {
+    footerTg.addEventListener('click', function() {
+      gtag('event', 'telegram_click', { event_category: 'conversion', event_label: 'footer' });
+    });
+  }
+
+  // 5. Service cards (open modal)
   document.querySelectorAll('.service-card').forEach(function(el) {
     el.addEventListener('click', function() {
       var title = el.querySelector('.service-title') ? el.querySelector('.service-title').innerText : 'unknown';
-      gtag('event', 'service_card_click', {
-        'event_category': 'engagement',
-        'event_label': title
-      });
-    });
-  });
-
-  // 3. Кнопка "Замовити зараз"
-  document.querySelectorAll('.btn-primary').forEach(function(el) {
-    el.addEventListener('click', function() {
-      gtag('event', 'order_button_click', {
-        'event_category': 'conversion',
-        'event_label': el.innerText.trim()
-      });
+      gtag('event', 'service_card_click', { event_category: 'engagement', event_label: title });
     });
   });
 
@@ -1589,6 +1598,15 @@ function openModal(idx) {
   document.getElementById('modal-desc').innerHTML = s[lang].desc;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  // Track modal Telegram button with exact service name
+  setTimeout(function() {
+    var modalTgBtn = document.querySelector('#modal a[href*="t.me"]');
+    if (modalTgBtn) {
+      modalTgBtn.onclick = function() {
+        gtag('event', 'telegram_click', { event_category: 'conversion', event_label: 'modal_' + s[lang].name });
+      };
+    }
+  }, 50);
 }
 
 function closeModal(e) {
