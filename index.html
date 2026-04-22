@@ -1017,6 +1017,42 @@
   gtag('js', new Date());
   gtag('config', 'G-Z32GCKDDHZ');
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // 1. Все кнопки и ссылки на Telegram
+  document.querySelectorAll('a[href*="t.me"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      gtag('event', 'telegram_click', {
+        'event_category': 'conversion',
+        'event_label': el.closest('section') ? el.closest('section').id : el.className
+      });
+    });
+  });
+
+  // 2. Клик на карточку услуги
+  document.querySelectorAll('.service-card').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var title = el.querySelector('.service-title') ? el.querySelector('.service-title').innerText : 'unknown';
+      gtag('event', 'service_card_click', {
+        'event_category': 'engagement',
+        'event_label': title
+      });
+    });
+  });
+
+  // 3. Кнопка "Замовити зараз"
+  document.querySelectorAll('.btn-primary').forEach(function(el) {
+    el.addEventListener('click', function() {
+      gtag('event', 'order_button_click', {
+        'event_category': 'conversion',
+        'event_label': el.innerText.trim()
+      });
+    });
+  });
+
+});
+</script>
 </head>
 <body>
 
